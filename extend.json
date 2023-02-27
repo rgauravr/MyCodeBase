@@ -1,0 +1,55 @@
+{
+  "command_args": {
+    "operation": "ExtendNodes",
+    "platform_type": "TRIDENT",
+    "is_retry": false
+  },
+  "input_data": {
+    "host_info": {
+      "1": {
+        "ip": "fd08:d675:2e4a::201:4457:8b5a:522b",
+        "user": "cyc",
+        "private_key_file": "/home/cyc/.ssh/id_rsa_sdnas"
+      },
+      "2": {
+        "ip": "fd08:d675:2e4a::201:44db:4e38:a2b3",
+        "user": "cyc",
+        "private_key_file": "/home/cyc/.ssh/id_rsa_sdnas"
+      },
+      "3": {
+        "ip": "fd08:d675:2e4a::201:44c0:244d:e0e3",
+        "user": "cyc",
+        "private_key_file": "/home/cyc/.ssh/id_rsa_sdnas"
+      },
+      "4": {
+        "ip": "fd08:d675:2e4a::201:4456:61d5:8297",
+        "user": "cyc",
+        "private_key_file": "/home/cyc/.ssh/id_rsa_sdnas"
+      }    },
+    "cluster_ip": "fd08:d675:2e4a::201:44fa:b952:c299",
+    "node_config": {
+      "3": {
+        "platform_node_id": "128.221.255.33,a,A3",
+        "interface": {
+          "name": "eth_mgmt",
+          "ip": "fd08:d675:2e4a::201:4460:4f12:639a",
+          "prefix": "64"
+        },
+        "node_lun": "68ccf09800f0b462e2db3b7f5c2d1ff3",
+        "container_memory": 28672,
+        "platformHardwareType": "PowerStore-EX-1",
+        "storage_details": "2527f036-0633-49be-8188-771703c816c4"
+      },        "4": {
+        "platform_node_id": "128.221.255.33,b,A3",
+        "interface": {
+          "name": "eth_mgmt",
+          "ip": "fd08:d675:2e4a::201:440f:5fcd:86fa",
+          "prefix": "64"
+        },
+        "node_lun": "68ccf09800ea4c5eea1d81176681284b",
+        "container_memory": 28672,
+        "platformHardwareType": "PowerStore-EX-1",
+        "storage_details": "2527f036-0633-49be-8188-771703c816c4"
+      }    }
+  }
+}
