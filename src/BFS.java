@@ -50,6 +50,7 @@ public class BFS {
         queue.add(x);
 
         while (!queue.isEmpty()){
+            //System.out.println("queue is "+queue.);
             int v=queue.poll();
            if(this.visited[v]==false)
             System.out.print(v+"->");

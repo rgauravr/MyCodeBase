@@ -1,14 +1,54 @@
+import java.io.IOException;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
+class lockDemo{
 
+    private  int count = 0;
+/*
+//There is a problem below as there are multiple thread trying to access the same count and leading to inconsistency state
+    public  void count(){
+        System.out.println("Thread name " +Thread.currentThread().getName()+ " before setting count is "+count);
+        count++;
+        System.out.println("Thread name " +Thread.currentThread().getName()+ " after setting count is "+count);
+    }
+
+    */
+
+//1st way using synchronized
+    /*
+    public synchronized void count(){
+        System.out.println("Thread name " +Thread.currentThread().getName()+ " before setting count is "+count);
+        count++;
+        System.out.println("Thread name " +Thread.currentThread().getName()+ " after setting count is "+count);
+    }*/
+Lock lock = new ReentrantLock();
+    public void count(){
+        try{
+        lock.lock();
+        System.out.println("Thread name " +Thread.currentThread().getName()+ " before setting count is "+count);
+        count++;
+        System.out.println("Thread name " +Thread.currentThread().getName()+ " after setting count is "+count);
+       // lock.unlock();
+    }catch (Exception io){
+
+        }finally {
+            lock.unlock();
+        }
+
+    }
+
+}
 
 class synchronisedDemo {
-    private int count=0;
+    private  int count=0;
 
-    public void setCount(){
+
+    public synchronized void setCount(){
        count++;
        System.out.println("Current Thread id is "+Thread.currentThread().getId()+"  and name is "+ Thread.currentThread().getName());
    }
-    public void getCount() {
+    public synchronized void getCount() {
        System.out.println("Current Thread id is " + Thread.currentThread().getId() + "  and name is " + Thread.currentThread().getName() + " and current count is " + count);
    }
 
@@ -20,7 +60,9 @@ class test1 extends  Thread{
     public void run(){
         for (int i=0;i<2;i++){
             System.out.println("test1");
-            try{Thread.sleep(10);}
+            try{
+                Thread.sleep(10);
+            }
             catch (Exception io){}
         }
     }
@@ -111,10 +153,12 @@ public class ThreadLearning {
 
         synchronisedDemo obj = new synchronisedDemo();
 
+
         Thread t5 = new Thread(new Runnable() {
             @Override
             public void run() {
                 for(int i=0;i<10000;i++){
+                    //obj.getCount();
                     obj.setCount();
                     obj.getCount();
                 }
@@ -127,8 +171,10 @@ public class ThreadLearning {
             @Override
             public void run() {
                 for(int i=0;i<10000;i++){
+                  //  obj.getCount();
                     obj.setCount();
                     obj.getCount();
+
                 }
             }
         });
@@ -139,6 +185,27 @@ public class ThreadLearning {
        t5.join();
        t6.join();
 
+        /*
+        for(int i=0;i<10000;i++){
+
+            Thread t7 = new Thread(()->{
+               obj.setCount();
+               obj.getCount();
+            });
+            t7.start();
+            t7.join();
+        }
+*/
+
+        lockDemo lockobj = new lockDemo();
+        for(int i=0;i<10;i++){
+
+            Thread t8 = new Thread(()->{
+                lockobj.count();
+            });
+            t8.start();
+
+        }
 
     }
 }

@@ -18,10 +18,10 @@ public class subStringOfAGivenString{
 
     }
     public static void main(String []args) {
-        String str="00110011";
+        //String str="00110011";
 
         // str.substring()
-        new subStringOfAGivenString().subString(str,0,1);
+        new subStringOfAGivenString().subString("abcd",0,1);
     }
 
 
