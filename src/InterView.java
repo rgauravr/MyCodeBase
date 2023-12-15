@@ -9,6 +9,7 @@ class Interview{
         System.out.println("hello world");
         System.out.println("hhh");
         System.out.println();
+        System.out.println();
 
 
     }
